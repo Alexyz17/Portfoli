@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>PortAventura World News</title>
+    <link>https://www.portaventuraworld.com/ca/actualitat</link>
+    <description>Notícies actualitzades del parc d'atraccions PortAventura World</description>
+    <language>ca</language>
+    <lastBuildDate>Tue, 22 Feb 2023 13:45:00 +0000</lastBuildDate>
+    <ttl>60</ttl>
+    <category>Parc d'atraccions</category>
+    <pubDate>Tue, 22 Feb 2023 12:00:00 +0000</pubDate>
+    <managingEditor>editor@portaventuraworld.com</managingEditor>
+    <image>
+      <title>PortAventura World</title>
+      <url>https://www.portaventuraworld.com/CA-ES/portaventura-world.png</url>
+      <link>https://www.portaventuraworld.com/ca</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
+    <item>
+      <title><![CDATA[Nova atracció al parc: Montanya Russa]]></title>
+      <link>https://www.portaventuraworld.com/ca/noves-atraccions/montanya-russa</link>
+      <guid isPermaLink="false">12345</guid>
+      <description><![CDATA[La nova atracció Montanya Russa obre les portes al públic.]]></description>
+      <category>Atraccions</category>
+      <pubDate>Tue, 22 Feb 2023 10:00:00 +0000</pubDate>
+      <author>autor@portaventuraworld.com</author>
+      <enclosure url="https://www.portaventuraworld.com/CA-ES/images/montanya-russa.jpg" type="image/jpeg" length="12345" />
+    </item>
+    <!-- Aquí se incluirían más elementos "item" con el mismo formato -->
+  </channel>
+</rss>

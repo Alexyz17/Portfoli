@@ -1,0 +1,23 @@
+table {
+    border-collapse: collapse;
+  }
+  
+
+  nav ul, header {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 5% 5% 5%;
+  }
+  
+  nav, section, footer {
+    text-align: center;
+  }
+
+  img {
+    width: 20%;
+  }
+
+  .logo {
+    width: 10%;
+  }

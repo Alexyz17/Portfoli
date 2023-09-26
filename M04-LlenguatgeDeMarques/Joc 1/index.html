@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pràctica</title>
+    <style>
+        body {
+            background: url('img/bg.png') repeat-x center center fixed;
+            background-size: cover;
+        }
+
+        #warrior {
+            height: 100px;
+            position: fixed;
+            top: calc(50vh - 50px);
+            transition: all .3s;
+        }
+
+        .boar {
+            position: fixed;
+            top: 25vh;
+            transition: all;
+        }
+
+        #boar1 {
+            right: 60%;
+            transition-duration: 5s;
+            animation: movement 5s infinite;
+        }
+
+        #boar2 {
+            right: 40%;
+            transition-duration: 8s;
+            animation: movement 8s infinite;
+        }
+
+        #boar3 {
+            right: 10%;
+            transition-duration: 4s;
+            animation: movement 4s infinite;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            text-align: center;
+        }
+
+        .fs-2 {
+            font-size: 2em;
+        }
+
+        @keyframes movement {
+            0% {
+                top: 25vh;
+            }
+
+            50% {
+                top: 70vh;
+            }
+
+            100% {
+                top: 25vh;
+            }
+        }
+    </style>
+    <script>
+        // Retorna la propietat left de la imatge del jugador            
+        function obtenirMargeEsquerra() {
+            let img = document.getElementById('warrior');
+            let mL = img.style.left.replace('px', '');
+            if (mL)
+                return parseInt(mL);
+            else return 0;
+        }
+
+        // Retorna la propietat top de la imatge del jugador            
+        function obtenirMargeSuperior() {
+            let img = document.getElementById('warrior');
+            let mL = img.style.top.replace('px', '');
+            if (mL)
+                return parseInt(mL);
+            else return window.innerHeight / 2 - 50;
+        }
+
+        // Mata al porc senglar que passem com argument
+        function killBoar(enemy) {
+            enemy.src = "img/boar.gif";
+            enemy.style.right = "-300px";
+        }
+
+        // Torna true si els dos objectes que passem com argument estan superposats
+        function comprovaColisio(jugador, enemy) {
+            if (jugador.x < enemy.x + enemy.width &&
+                jugador.x + jugador.width > enemy.x &&
+                jugador.y < enemy.y + enemy.height &&
+                jugador.height + jugador.y > enemy.y) {
+                return true;
+            }
+            return false;
+        };
+        
+        function moureDalt(){
+            var warrior = document.getElementById("warrior");
+            warrior.style.top = obtenirMargeSuperior() - 50 + "px";
+        };
+
+        function moureBaix(){
+            var warrior = document.getElementById("warrior");
+            warrior.style.top = obtenirMargeSuperior() + 50 + "px";
+        };
+
+        var apunta;
+        function moureEsquerra(){
+            var warrior = document.getElementById("warrior");
+            warrior.style.left = obtenirMargeEsquerra() - 50 + "px";
+            warrior.src = "img/warrior-left.png";
+            apunta = "esquerra";
+        };
+
+        function moureDreta(){
+            var warrior = document.getElementById("warrior");
+            warrior.style.left = obtenirMargeEsquerra() + 50 + "px";
+            warrior.src = "img/warrior.png";
+            apunta = "dreta";
+        };
+        
+        function ataca(){
+            var warrior = document.getElementById("warrior");
+            var boar1 = document.getElementById("boar1");
+            var boar1 = document.getElementById("boar1");
+            var boar1 = document.getElementById("boar1");
+            var mata1 = comprovaColisio(warrior, boar1);
+            var mata2 = comprovaColisio(warrior, boar2);
+            var mata3 = comprovaColisio(warrior, boar3);
+            if(apunta == "esquerra"){
+                warrior.src = "img/warrior-sword-left.png";
+                setTimeout(() => {
+                    warrior.src = "img/warrior-left.png";
+                }, 300);
+            } else {
+                warrior.src = "img/warrior-sword.png";
+                setTimeout(() => {
+                    warrior.src = "img/warrior.png";
+                }, 300);
+            };
+
+            if(mata1) killBoar(boar1);
+            if(mata2) killBoar(boar2);
+            if(mata3) killBoar(boar3);
+        };
+    
+        function apretaTecla(){
+            var tecla = event.key.toLowerCase();
+            if(tecla == "w" || tecla == "arrowup"){
+                moureDalt();
+            } else if(tecla == "a" || tecla == "arrowleft"){
+                moureEsquerra();
+            } else if(tecla == "s" || tecla == "arrowdown"){
+                moureBaix();
+            } else if(tecla == "d" || tecla == "arrowright"){
+                moureDreta();
+            } else if(tecla == " "){
+                ataca();
+            } else {
+                return;
+            };
+        };
+    </script>
+</head>
+<body onkeydown="apretaTecla()">
+    <img src="img/warrior.png" id="warrior">
+    <img class="boar" src="img/boar.png" id="boar1">
+    <img class="boar" src="img/boar.png" id="boar2">
+    <img class="boar" src="img/boar.png" id="boar3">
+    <div class="controls">
+        <div>
+            <button class="fs-2" style="margin: 0 auto 0 auto" onclick="moureDalt()">🔼</button>
+            <button class="fs-2" onclick="ataca()">⚔️</button>
+        </div>
+        <div>
+            <button class="fs-2" onclick="moureEsquerra()">◀️</button>
+            <button class="fs-2" onclick="moureBaix()">🔽</button>
+            <button class="fs-2" onclick="moureDreta()">▶️</button>
+        </div>
+    </div>
+</body>
+</html>

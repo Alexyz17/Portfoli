@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pràctica</title>
+    <style>
+        body {
+            background: url('img/bg.png') repeat-x center center fixed;
+            background-size: cover;
+        }
+
+        #warrior {
+            height: 100px;
+            position: fixed;
+            top: calc(50vh - 50px);
+            transition: all .3s;
+        }
+
+        .boar {
+            position: fixed;
+            top: 25vh;
+            transition: all;
+        }
+
+        #boar1 {
+            right: 60%;
+            transition-duration: 5s;
+            animation: movement 5s infinite;
+        }
+
+        #boar2 {
+            right: 40%;
+            transition-duration: 8s;
+            animation: movement 8s infinite;
+        }
+
+        #boar3 {
+            right: 10%;
+            transition-duration: 4s;
+            animation: movement 4s infinite;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            text-align: center;
+        }
+
+        .fs-2 {
+            font-size: 2em;
+        }
+
+        @keyframes movement {
+            0% {
+                top: 25vh;
+            }
+
+            50% {
+                top: 70vh;
+            }
+
+            100% {
+                top: 25vh;
+            }
+        }
+    </style>
+    <script>
+        // Torna true si els dos objectes que passem com argument estan superposats
+        function comprovaColisio(jugador, enemy) {
+            if (jugador.x < enemy.x + enemy.width &&
+                jugador.x + jugador.width > enemy.x &&
+                jugador.y < enemy.y + enemy.height &&
+                jugador.height + jugador.y > enemy.y) {
+                return true;
+            }
+            return false;
+        };
+
+        var oldValue = 0;
+
+        function moure() {
+            var warrior = document.getElementById("warrior");
+            var moviment = document.getElementById("moviment");
+            var boar1 = document.getElementById("boar1");
+            var boar2 = document.getElementById("boar2");
+            var boar3 = document.getElementById("boar3");
+            var mort1 = comprovaColisio(warrior, boar1);
+            var mort2 = comprovaColisio(warrior, boar2);
+            var mort3 = comprovaColisio(warrior, boar3);
+            warrior.style.left = moviment.value + '%';
+            if (oldValue < moviment.value) {
+                warrior.src = "img/warrior.png";
+            } else {
+                warrior.src = "img/warrior-left.png";
+            };
+            oldValue = moviment.value;
+
+            if (mort1 || mort2 || mort3) {
+                mort();
+            };
+        };
+
+        function mort() {
+            alert("Game over");
+            var moviment = document.getElementById("moviment");
+            var warrior = document.getElementById("warrior");
+            moviment.value = 0;
+            warrior.src = "img/warrior.png"
+            warrior.style.left = "5px";
+        };
+    </script>
+</head>
+
+<body>
+    <img src="img/warrior.png" id="warrior">
+    <img class="boar" src="img/boar.png" id="boar1">
+    <img class="boar" src="img/boar.png" id="boar2">
+    <img class="boar" src="img/boar.png" id="boar3">
+    <div class="controls">
+        <div>
+            <input id="moviment" type="range" min=0 max=100 value=0 oninput="moure()">
+        </div>
+    </div>
+</body>
+
+</html>

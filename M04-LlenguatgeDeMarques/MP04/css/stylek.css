@@ -1,0 +1,38 @@
+table {
+    border-collapse: collapse;
+  }
+  
+body {
+  background-image: url(../img/background.jpg);
+}
+  nav ul, header {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 5% 5% 5%;
+  }
+  
+  nav, footer {
+    text-align: center;
+  }
+
+  img {
+    width: 100px;
+  }
+
+  .logo {
+    width: 10%;
+  }
+
+  .title{
+    text-align: center;
+  }
+
+  .title2 {
+    text-align: right;
+  }
+  .col{
+    text-align: left;
+  }
+
+  
