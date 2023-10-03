@@ -6,3 +6,4 @@ Els mòduls que he fet són: <br>
 -[Bases de Dades](https://github.com/Alexyz17/Portfoli/tree/main/M02-BaseDeDades)<br>
 -[Programació](https://github.com/Alexyz17/Portfoli/tree/main/M03-Programacio)<br>
 -[Llenguatge de marques](https://github.com/Alexyz17/Portfoli/tree/main/M04-LlenguatgeDeMarques)<br>
+-[CV](https://github.com/Alexyz17/Portfoli/tree/main/CV)<br>
